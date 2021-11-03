@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp">
+
+    <ImageView
+        android:id="@+id/lvCategoryImage"
+        android:layout_width="175dp"
+        android:layout_height="111dp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="20dp"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/lvCategoryProfile"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/messageprofile1"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintTop_toTopOf="@id/lvCategoryImage"
+        app:layout_constraintLeft_toRightOf="@id/lvCategoryImage"/>
+
+    <TextView
+        android:id="@+id/lvCategoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/lvCategoryProfile"
+        app:layout_constraintLeft_toRightOf="@id/lvCategoryProfile"
+        app:layout_constraintBottom_toBottomOf="@id/lvCategoryProfile"
+        android:layout_marginLeft="5dp"
+        android:text="Izdeveloper"
+        android:textSize="8sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito_bold"/>
+    <TextView
+        android:id="@+id/lvCategoryPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/lvCategoryProfile"
+        app:layout_constraintBottom_toBottomOf="@id/lvCategoryProfile"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="20dp"
+        android:text="IDR200K"
+        android:textSize="8sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito_bold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/lvCategoryProfile"
+        app:layout_constraintBottom_toBottomOf="@id/lvCategoryProfile"
+        app:layout_constraintRight_toLeftOf="@id/lvCategoryPrice"
+        android:text="From"
+        android:textSize="6sp"
+        android:layout_marginRight="2dp"
+        android:fontFamily="@font/nunito"/>
+    <TextView
+        android:id="@+id/lvCategoryDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/lvCategoryProfile"
+        app:layout_constraintStart_toEndOf="@id/lvCategoryImage"
+        app:layout_constraintEnd_toEndOf="@id/lvCategoryPrice"
+        android:layout_marginLeft="5dp"
+        android:text="Implement change, debug, fix, improve your swift or obj C ios app"
+        android:textSize="10sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
