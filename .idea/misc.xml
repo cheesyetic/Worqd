@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.17407407407407408" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/drawable/ic_profile.xml" value="0.1125" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/drawable/ic_profile_settings.xml" value="0.1125" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/drawable/ic_right.xml" value="0.2101851851851852" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/drawable/logregistinput_bg.xml" value="0.21574074074074073" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/layout/activity_login.xml" value="0.22" />

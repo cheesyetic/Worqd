@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/nunito_bold"
-                android:text="Setting"
+                android:text="Edit Profile"
                 android:textColor="@color/black"
                 android:textSize="18sp"/>
 
@@ -75,7 +75,7 @@
         android:background="@drawable/logregistinput_bg"
         android:layout_marginTop="5dp"
         android:textColorHint="@color/black"
-        android:hint="Dimas Renggana"
+        android:hint="Please input your name here"
         android:paddingLeft="10dp"
         android:paddingTop="7.5dp"
         android:paddingRight="10dp"
@@ -102,7 +102,7 @@
         android:background="@drawable/logregistinput_bg"
         android:layout_marginTop="5dp"
         android:textColorHint="@color/black"
-        android:hint="DimasRonggeng18"
+        android:hint="Please input your username here"
         android:paddingLeft="10dp"
         android:paddingTop="7.5dp"
         android:paddingRight="10dp"
@@ -129,7 +129,7 @@
         android:background="@drawable/logregistinput_bg"
         android:layout_marginTop="5dp"
         android:textColorHint="@color/black"
-        android:hint="DimasRonggeng18@gmail.com"
+        android:hint="Please input an active email"
         android:paddingLeft="10dp"
         android:paddingTop="7.5dp"
         android:paddingRight="10dp"
@@ -148,7 +148,7 @@
         android:fontFamily="@font/nunito"
         android:textSize="12sp"
         android:textColor="@color/black"
-        android:text="Email"/>
+        android:text="Phone"/>
     <EditText
         android:id="@+id/editPhone"
         android:layout_width="match_parent"
@@ -156,7 +156,7 @@
         android:background="@drawable/logregistinput_bg"
         android:layout_marginTop="5dp"
         android:textColorHint="@color/black"
-        android:hint="081911633018"
+        android:hint="Please input an active phone number"
         android:paddingLeft="10dp"
         android:paddingTop="7.5dp"
         android:paddingRight="10dp"
@@ -164,5 +164,18 @@
         app:layout_constraintTop_toBottomOf="@+id/tvPhone"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
+    <Button
+        android:id="@+id/updateBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/editPhone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="30dp"
+        android:text="UPDATE"
+        android:paddingRight="30dp"
+        android:paddingLeft="30dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,12 +18,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImage"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/messageprofile2"
             android:layout_marginTop="50dp"/>
         <TextView
+            android:id="@+id/profileUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dimas Renggana"
@@ -86,7 +88,7 @@
                 android:id="@+id/settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Setting"
+                android:text="Edit Profile"
                 android:layout_marginLeft="3dp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/nunito"
@@ -95,6 +97,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Logout"

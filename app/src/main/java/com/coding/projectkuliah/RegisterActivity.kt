@@ -1,6 +1,8 @@
 package com.coding.projectkuliah
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -8,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import java.io.ByteArrayOutputStream
 
 class RegisterActivity : AppCompatActivity() {
     lateinit var btnRegister : Button
@@ -44,7 +47,11 @@ class RegisterActivity : AppCompatActivity() {
             } else {
                     val checkusername = DB.checkUsername(username)
                     if (checkusername == false) {
-                        val insertdata = DB.insertData(username, email, password)
+                        val bitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.worqdlogo)
+                        val bos = ByteArrayOutputStream()
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos)
+                        val img: ByteArray = bos.toByteArray()
+                        val insertdata = DB.insertData(username, email, password, img)
                         if (insertdata == true) {
                             Toast.makeText(
                                 this@RegisterActivity,

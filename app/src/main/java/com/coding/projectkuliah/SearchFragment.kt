@@ -37,11 +37,17 @@ class SearchFragment : Fragment() {
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
 
+        val id = ArrayList<String>()
+        val idList =  arrayOf(
+            "1", "2", "3", "4", "5", "6", "7", "8"
+        )
+
         val categories = ArrayList<String>()
         val categoriesList = arrayOf(
             "Graphics and Design", "Digital Marketing", "Writing & Translation", "Video & Animation",
             "Programming & Tech", "Data", "Business", "Lifestyle"
         )
+
         val details = ArrayList<String>()
         val detailList = arrayOf(
             "Logo and Brand Identity, Art and Illustration", "Social Media Marketing, Social Media Advertising",
@@ -51,16 +57,19 @@ class SearchFragment : Fragment() {
         )
 
         for(i in 0..categoriesList.size-1){
+            id.add(idList[i])
             categories.add(categoriesList[i])
             details.add(detailList[i])
         }
 
-        myCustomAdapter = MyCustomAdapter(requireActivity(), categories, details)
+        myCustomAdapter = MyCustomAdapter(requireActivity(), categories, details, id)
         listview.adapter = myCustomAdapter
         listview.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, position, l ->
             val selectedCategory = categories[position]
+            val selectedId = id[position]
             val bundle = Bundle()
             bundle.putString("barTitle", selectedCategory)
+            bundle.putString("idCat", selectedId)
             val listViewCategoryFragment = ListViewCategoryFragment()
             listViewCategoryFragment.arguments = bundle
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
@@ -91,11 +100,12 @@ class SearchFragment : Fragment() {
         return super.onCreateOptionsMenu(menu, inflater)
     }
 
-    class MyCustomAdapter(context : Context, categories: ArrayList<String>, details: ArrayList<String> ): BaseAdapter(){
+    class MyCustomAdapter(context : Context, categories: ArrayList<String>, details: ArrayList<String>, ids: ArrayList<String> ): BaseAdapter(){
 
         private val mContext : Context
         var category = categories
         var detail = details
+        var id = ids
         var tempCategory = ArrayList(category)
         var tempDetail = ArrayList(detail)
 

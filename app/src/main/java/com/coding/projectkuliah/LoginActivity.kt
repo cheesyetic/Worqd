@@ -3,6 +3,7 @@ package com.coding.projectkuliah
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -20,43 +21,52 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        //hooks
-        inputUsername = findViewById(R.id.inputUsername)
-        inputPassword = findViewById(R.id.inputPassword)
-        btnLogin = findViewById(R.id.btnLogin)
-        tvSignup = findViewById(R.id.tvSignup)
-        DB = DBHelper(this)
+            //hooks
+            inputUsername = findViewById(R.id.inputUsername)
+            inputPassword = findViewById(R.id.inputPassword)
+            btnLogin = findViewById(R.id.btnLogin)
+            tvSignup = findViewById(R.id.tvSignup)
+            DB = DBHelper(this)
 
-        //login
-        btnLogin.setOnClickListener(View.OnClickListener {
-            val username = inputUsername.text.toString()
-            val password = inputPassword.text.toString()
-            if (username == "" || password == "") Toast.makeText(
-                this@LoginActivity,
-                "Please fill all the fields",
-                Toast.LENGTH_SHORT
-            ).show() else {
-                val checkuserpass: Boolean = DB.chekUsernamePassword(username, password)
-                if (checkuserpass == true) {
-                    Toast.makeText(this@LoginActivity, "Login Successful!", Toast.LENGTH_SHORT)
-                        .show()
-                    val logintodashboard = Intent(this@LoginActivity, NavigationActivity::class.java)
-                    startActivity(logintodashboard)
-                    finish()
-                } else {
-                    Toast.makeText(
-                        this@LoginActivity,
-                        "Username/Password Not Found!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+            //login
+            btnLogin.setOnClickListener(View.OnClickListener {
+                val username = inputUsername.text.toString()
+                val password = inputPassword.text.toString()
+                if (username == "" || password == "") Toast.makeText(
+                    this@LoginActivity,
+                    "Please fill all the fields",
+                    Toast.LENGTH_SHORT
+                ).show() else {
+                    val checkuserpass: Boolean = DB.chekUsernamePassword(username, password)
+                    if (checkuserpass == true) {
+                        Toast.makeText(this@LoginActivity, "Login Successful!", Toast.LENGTH_SHORT)
+                            .show()
+                        val logintodashboard =
+                            Intent(this@LoginActivity, NavigationActivity::class.java)
+                        val akun_id = DB.checkAccount()
+                        logintodashboard.putExtra("akun_id", akun_id);
+                        startActivity(logintodashboard)
+                        finish()
+                    } else {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Username/Password Not Found!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
-            }
-        })
+            })
 
-        //intent
-        tvSignup.setOnClickListener(View.OnClickListener {
-            val signuptologin = Intent(this@LoginActivity, RegisterActivity::class.java)
-            startActivity(signuptologin)
-        })
+            //intent
+            tvSignup.setOnClickListener(View.OnClickListener {
+                val signuptologin = Intent(this@LoginActivity, RegisterActivity::class.java)
+                startActivity(signuptologin)
+            })
+    }
+    override fun onBackPressed() {
+        val a = Intent(Intent.ACTION_MAIN)
+        a.addCategory(Intent.CATEGORY_HOME)
+        a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(a)
     }
 }

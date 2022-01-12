@@ -6,13 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.coding.projectkuliah.model.ProductModel
+import de.hdodenhof.circleimageview.CircleImageView
 
 class ListViewCategoryFragment : Fragment() {
     var barTitle : String? = ""
+    var idCategory: String? = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,53 +32,54 @@ class ListViewCategoryFragment : Fragment() {
         barTitle = arguments?.getString("barTitle")
         barTitles.text = barTitle
 
+        idCategory = arguments?.getString("idCat")
+
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        val names = ArrayList<String>()
-        val nameList = arrayOf("Izdeveloper", "Whoami", "Mynameiz", "Hadouken", "Tatsumaki", "Senpuyaku")
+        //creating the instance of DatabaseHandler class
+        val databaseHandler: DBHelper = DBHelper(requireActivity())
+        //calling the viewEmployee method of DatabaseHandler class to read the records
+        val emp: List<ProductModel> = databaseHandler.viewProduct(idCategory!!)
 
-        for (i in 0..nameList.size-1){
-            names.add(nameList[i])
-        }
-
-        val adapter = MyCustomAdapter(requireActivity(), names)
+        val adapter = MyCustomAdapter(requireActivity(), R.layout.lvcategory_row, emp)
 
         listview.adapter = adapter
     }
 
-    class MyCustomAdapter(context : Context, nameList: ArrayList<String> ): BaseAdapter() {
+    class MyCustomAdapter(var mCtx: Context , var resource:Int, var items:List<ProductModel>)
+        : ArrayAdapter<ProductModel>( mCtx , resource , items ){
 
-        private val mContext: Context
-        var names = nameList
-
-        init {
-            mContext = context
-        }
+        private var images = arrayOf(R.drawable.messageprofile1, R.drawable.messageprofile2, R.drawable.messageprofile2, R.drawable.messageprofile2)
+        private var profiles = arrayOf(R.drawable.messageprofile1, R.drawable.messageprofile2, R.drawable.messageprofile2, R.drawable.messageprofile2)
 
         override fun getCount(): Int {
-            return names.size
-        }
-
-        override fun getItem(p0: Int): Any {
-            return "TRY STRING"
+            return items.size
         }
 
         override fun getItemId(p0: Int): Long {
             return p0.toLong()
         }
 
-        override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-            val layoutInflater = LayoutInflater.from(mContext)
-            val rowLvCategory = layoutInflater.inflate(R.layout.lvcategory_row, p2, false)
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+            val layoutInflater: LayoutInflater = LayoutInflater.from(mCtx)
+            val view: View = layoutInflater.inflate(resource, null)
 
-            //setting up name text
-            val categoriesTextView = rowLvCategory.findViewById<TextView>(R.id.lvCategoryName)
-            categoriesTextView.text = names.get(p0)
+            var item: ProductModel = items[position]
+            val productImage = view.findViewById<ImageView>(R.id.lvCategoryImage)
+            val profile = view.findViewById<CircleImageView>(R.id.lvCategoryProfile)
+            val name = view.findViewById<TextView>(R.id.lvCategoryName)
+            val price = view.findViewById<TextView>(R.id.lvCategoryPrice)
+            val description = view.findViewById<TextView>(R.id.lvCategoryDescription)
 
-            return rowLvCategory
+            productImage.setImageResource(images.get(position))
+            profile.setImageResource(profiles.get(position))
+            name.text = item.name
+            price.text = item.price
+            description.text = item.detail
 
+            return view
         }
     }
 }
