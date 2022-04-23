@@ -1,6 +1,8 @@
 package com.coding.projectkuliah
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +12,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.coding.projectkuliah.model.ProductModel
 import de.hdodenhof.circleimageview.CircleImageView
+import java.io.ByteArrayOutputStream
 
 class ListViewCategoryFragment : Fragment() {
     var barTitle : String? = ""
@@ -33,10 +36,22 @@ class ListViewCategoryFragment : Fragment() {
         barTitles.text = barTitle
 
         idCategory = arguments?.getString("idCat")
+        arguments?.clear()
 
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        val imagesList = arrayOf(R.drawable.messageprofile1, R.drawable.messageprofile2, R.drawable.messageprofile2, R.drawable.messageprofile2)
+        val profileList = arrayOf(R.drawable.messageprofile1, R.drawable.messageprofile2, R.drawable.messageprofile2, R.drawable.messageprofile2)
+
+        val images = ArrayList<Int>()
+        val profiles = ArrayList<Int>()
+
+        for(i in 0..imagesList.size-1){
+            images.add(imagesList[i])
+            profiles.add(profileList[i])
+        }
 
         //creating the instance of DatabaseHandler class
         val databaseHandler: DBHelper = DBHelper(requireActivity())
@@ -46,7 +61,38 @@ class ListViewCategoryFragment : Fragment() {
         val adapter = MyCustomAdapter(requireActivity(), R.layout.lvcategory_row, emp)
 
         listview.adapter = adapter
-    }
+
+        listview.setOnItemClickListener { parent, view, position, id ->
+            val idText = view.findViewById(R.id.product_id) as TextView
+            val productimages = images[position]
+            val profileImage = profiles[position]
+
+            // converting image
+            val bmp1: Bitmap = BitmapFactory.decodeResource(resources, productimages)
+            val stream = ByteArrayOutputStream()
+            bmp1.compress(Bitmap.CompressFormat.PNG, 100, stream)
+            val byteArray1: ByteArray = stream.toByteArray()
+
+            val bmp2: Bitmap = BitmapFactory.decodeResource(resources, profileImage)
+            bmp2.compress(Bitmap.CompressFormat.PNG, 100, stream)
+            val byteArray2: ByteArray = stream.toByteArray()
+            //
+
+            val product_id = idText.text.toString()
+            val bundle = Bundle()
+            bundle.putString("barTitle", barTitles.text.toString())
+            bundle.putString("idProduct", product_id)
+            bundle.putByteArray("productimage", byteArray1)
+            bundle.putByteArray("profileimage", byteArray2)
+
+            val showProductFragment = ShowProductFragment()
+            showProductFragment.arguments = bundle
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragmentContainerView, showProductFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+            }
+        }
 
     class MyCustomAdapter(var mCtx: Context , var resource:Int, var items:List<ProductModel>)
         : ArrayAdapter<ProductModel>( mCtx , resource , items ){
@@ -72,9 +118,11 @@ class ListViewCategoryFragment : Fragment() {
             val name = view.findViewById<TextView>(R.id.lvCategoryName)
             val price = view.findViewById<TextView>(R.id.lvCategoryPrice)
             val description = view.findViewById<TextView>(R.id.lvCategoryDescription)
+            val idproduct = view.findViewById<TextView>(R.id.product_id)
 
             productImage.setImageResource(images.get(position))
             profile.setImageResource(profiles.get(position))
+            idproduct.text = item.id.toString()
             name.text = item.name
             price.text = item.price
             description.text = item.detail

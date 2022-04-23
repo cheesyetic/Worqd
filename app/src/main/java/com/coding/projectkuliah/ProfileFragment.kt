@@ -1,5 +1,7 @@
 package com.coding.projectkuliah
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -62,9 +64,21 @@ class ProfileFragment : Fragment() {
         })
 
         logout.setOnClickListener(View.OnClickListener {
-            DBHelper.logoutAccount(user_id)
-            val intent = Intent(requireActivity(), LoginActivity::class.java)
-            startActivity(intent)
+            val dialogBuilder = AlertDialog.Builder(requireActivity())
+            dialogBuilder.setIcon(R.drawable.ic_logo_worqd)
+            dialogBuilder.setTitle(R.string.app_name)
+            dialogBuilder.setMessage("Kamu yakin ingin keluar?")
+            dialogBuilder.setPositiveButton("Okay", DialogInterface.OnClickListener {
+                    dialogInterface, i ->
+                DBHelper.logoutAccount(user_id)
+                val intent = Intent(requireActivity(), LoginActivity::class.java)
+                startActivity(intent)
+            })
+            dialogBuilder.setNegativeButton("Nope", DialogInterface.OnClickListener {
+                    dialogInterface, i ->
+                dialogInterface.dismiss()
+            })
+            dialogBuilder.show()
         })
     }
 }

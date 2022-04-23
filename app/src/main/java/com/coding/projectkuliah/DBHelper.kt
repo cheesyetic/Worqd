@@ -37,18 +37,18 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, "Login.db", null, 1)
 
         //Inserting Data in Product
         val insertproduct = "insert into product(product_id, product_name, product_category, product_price, product_detail, product_phone, product_email, longitude, latitude)"
-        MyDB.execSQL(insertproduct + "values(1, 'Izdeveloper', '1', '200', 'We care about your design project!', '08111111', 'a@m.c', '-170.68004', '8.51495')")
-        MyDB.execSQL(insertproduct + "values(2, 'Whoami', '1', '700', 'You can trust us!', '08111112', 'b@m.c', '139.90164', '-31.21078')")
-        MyDB.execSQL(insertproduct + "values(3, 'Wala Ng Ako', '1', '500', 'Wala wala we are the best!', '08111113', 'c@m.c', '-119.62409', '-44.18784')")
-        MyDB.execSQL(insertproduct + "values(4, 'Whoeveritis', '2', '400', 'Why dont u choose us?', '08111142', 'd@m.c', '-12.18338', '11.48178')")
-        MyDB.execSQL(insertproduct + "values(5, 'ILoveU', '2', '300', 'Yep, I love u!', '08111118', 'e@m.c', '157.71507', '47.88205')")
-        MyDB.execSQL(insertproduct + "values(6, 'IStillLoveU', '3', '100', 'Yep, I still love u!', '08111122', 'f@m.c', '-126.18414', '69.45760')")
-        MyDB.execSQL(insertproduct + "values(7, 'Hadouken', '3', '200', 'Hadouken Hadouken Hadouken!', '08111812', 'g@m.c', '91.48642', '54.05762')")
-        MyDB.execSQL(insertproduct + "values(8, 'Rimuru', '4', '100', 'I am reincarnated as a slime!', '08111102', 'h@m.c', '-55.94949', '-10.66846')")
-        MyDB.execSQL(insertproduct + "values(9, 'Ideaingudahstuck', '5', '300', 'Ngasi deskripsi apalagi ya', '08133112', 'i@m.c', '-1.10708', '22.58339')")
-        MyDB.execSQL(insertproduct + "values(10, 'Noname', '6', '900', 'Its just about data bro', '08111172', 'j@m.c', '-121.77530', '56.63269')")
-        MyDB.execSQL(insertproduct + "values(11, 'Unnamed', '7', '690', 'Business is everything!', '08111812', 'k@m.c', '114.15069', '48.77322')")
-        MyDB.execSQL(insertproduct + "values(12, 'Untitled', '8', '730', 'Your lifestyle is the most important thing', '08111612', 'l@m.c', '22.79785', '-24.36511')")
+        MyDB.execSQL(insertproduct + "values(1, 'Izdeveloper', '1', 'IDR200.000', 'We care about your design project!', '08111111', 'a@m.c', '-170.68004', '8.51495')")
+        MyDB.execSQL(insertproduct + "values(2, 'Whoami', '1', 'IDR700.000', 'You can trust us!', '08111112', 'b@m.c', '139.90164', '-31.21078')")
+        MyDB.execSQL(insertproduct + "values(3, 'Wala Ng Ako', '1', 'IDR500.000', 'Wala wala we are the best!', '08111113', 'c@m.c', '-119.62409', '-44.18784')")
+        MyDB.execSQL(insertproduct + "values(4, 'Whoeveritis', '2', 'IDR400.000', 'Why dont u choose us?', '08111142', 'd@m.c', '-12.18338', '11.48178')")
+        MyDB.execSQL(insertproduct + "values(5, 'ILoveU', '2', 'IDR300.000', 'Yep, I love u!', '08111118', 'e@m.c', '157.71507', '47.88205')")
+        MyDB.execSQL(insertproduct + "values(6, 'IStillLoveU', '3', 'IDR100.000', 'Yep, I still love u!', '08111122', 'f@m.c', '-126.18414', '69.45760')")
+        MyDB.execSQL(insertproduct + "values(7, 'Hadouken', '3', 'IDR200.000', 'Hadouken Hadouken Hadouken!', '08111812', 'g@m.c', '91.48642', '54.05762')")
+        MyDB.execSQL(insertproduct + "values(8, 'Rimuru', '4', 'IDR100.000', 'I am reincarnated as a slime!', '08111102', 'h@m.c', '-55.94949', '-10.66846')")
+        MyDB.execSQL(insertproduct + "values(9, 'Ideaingudahstuck', '5', 'IDR300.000', 'Ngasi deskripsi apalagi ya', '08133112', 'i@m.c', '-1.10708', '22.58339')")
+        MyDB.execSQL(insertproduct + "values(10, 'Noname', '6', 'IDR900.000', 'Its just about data bro', '08111172', 'j@m.c', '-121.77530', '56.63269')")
+        MyDB.execSQL(insertproduct + "values(11, 'Unnamed', '7', 'IDR690.000', 'Business is everything!', '08111812', 'k@m.c', '114.15069', '48.77322')")
+        MyDB.execSQL(insertproduct + "values(12, 'Untitled', '8', 'IDR730.000', 'Your lifestyle is the most important thing', '08111612', 'l@m.c', '22.79785', '-24.36511')")
 
     }
 
@@ -56,6 +56,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, "Login.db", null, 1)
         MyDB.execSQL("drop Table if exists users")
         MyDB.execSQL("drop Table if exists category")
         MyDB.execSQL("drop Table if exists product")
+        onCreate(MyDB)
     }
 
     fun insertData(username: String?, email: String?, password: String?, image: ByteArray): Boolean {
@@ -160,6 +161,45 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, "Login.db", null, 1)
     fun viewProduct(id: String): List<ProductModel> {
         val empList: ArrayList<ProductModel> = ArrayList<ProductModel>()
         val selectQuery = "SELECT * FROM product WHERE product_category = $id"
+        val db = this.readableDatabase
+        var cursor: Cursor? = null
+        try {
+            cursor = db.rawQuery(selectQuery, null)
+        } catch (e: SQLiteException) {
+            db.execSQL(selectQuery)
+            return ArrayList()
+        }
+        var product_id: Int
+        var product_name: String
+        var product_price: String
+        var product_detail: String
+        var longitude: String
+        var latitude: String
+        var product_phone: String
+        var product_email: String
+        if (cursor.moveToFirst()) {
+            do {
+                product_id = cursor.getInt(cursor.getColumnIndexOrThrow("product_id"))
+                product_name = cursor.getString(cursor.getColumnIndexOrThrow("product_name"))
+                product_price = cursor.getString(cursor.getColumnIndexOrThrow("product_price"))
+                product_detail = cursor.getString(cursor.getColumnIndexOrThrow("product_detail"))
+                product_email = cursor.getString(cursor.getColumnIndexOrThrow("product_email"))
+                product_phone = cursor.getString(cursor.getColumnIndexOrThrow("product_phone"))
+                longitude = cursor.getString(cursor.getColumnIndexOrThrow("longitude"))
+                latitude = cursor.getString(cursor.getColumnIndexOrThrow("latitude"))
+                val emp = ProductModel(id = product_id, name = product_name, price = product_price,
+                    detail = product_detail, email = product_email, phone = product_phone, longitude = longitude, latitude = latitude)
+                empList.add(emp)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        db.close()
+        return empList
+    }
+
+    fun viewFourProduct(): List<ProductModel> {
+        val empList: ArrayList<ProductModel> = ArrayList<ProductModel>()
+        val selectQuery = "SELECT * FROM product LIMIT 4"
         val db = this.readableDatabase
         var cursor: Cursor? = null
         try {

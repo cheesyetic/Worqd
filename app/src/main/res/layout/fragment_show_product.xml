@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ShowProductFragment"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:backgroundTint="@color/white"
+        android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/productToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
+
+            <TextView
+                android:id="@+id/showTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Graphics and Design"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <ImageView
+        android:id="@+id/showImage"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/appBar"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/showProfileImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/messageprofile1"
+        app:layout_constraintTop_toBottomOf="@id/showImage"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/showProfileName"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:fontFamily="@font/nunito_bold"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="Izdeveloper"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@id/showProfileImage"
+        app:layout_constraintTop_toBottomOf="@id/showImage" />
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/showProfileImage"
+        android:text="Description"
+        android:textSize="18sp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito_bold"/>
+    <TextView
+        android:id="@+id/showDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_description"
+        android:text="Be your spanish teacher online, professional tutoring"
+        android:textSize="14sp"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito"/>
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/showDescription"
+        android:text="Price (Start From)"
+        android:textSize="18sp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito_bold"/>
+    <TextView
+        android:id="@+id/showPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_price"
+        android:text="Start from IDR100.000"
+        android:textSize="14sp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito"/>
+
+    <TextView
+        android:id="@+id/tv_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/showPrice"
+        android:text="Contact"
+        android:textSize="18sp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito_bold"/>
+
+    <TextView
+        android:id="@+id/showWhatsapp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:drawableLeft="@drawable/ic_whatsapp"
+        android:fontFamily="@font/nunito"
+        android:text="081911633100"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_contact"
+        tools:layout_editor_absoluteX="9dp" />
+
+    <TextView
+        android:id="@+id/showEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/showWhatsapp"
+        android:text="raquelsbro@gmail.com"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:padding="5dp"
+        android:textSize="14sp"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="@color/black"
+        android:drawableLeft="@drawable/ic_gmail"
+        android:fontFamily="@font/nunito"/>
+
+    <Button
+        android:id="@+id/showMap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Location"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="10dp"
+        android:drawableTint="@color/white"
+        android:drawableLeft="@drawable/ic_baseline_map_24"
+        app:layout_constraintTop_toBottomOf="@id/showEmail"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

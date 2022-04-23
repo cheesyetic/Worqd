@@ -4,12 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.17407407407407408" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/drawable-v24/ic_whatsapp.xml" value="0.2203125" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/drawable/ic_logo_worqd.xml" value="0.2203125" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/drawable/ic_profile.xml" value="0.1125" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/drawable/ic_profile_settings.xml" value="0.1125" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/drawable/ic_right.xml" value="0.2101851851851852" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/drawable/logregistinput_bg.xml" value="0.21574074074074073" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/layout/activity_map.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/layout/activity_navigation.xml" value="0.25" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/layout/activity_register.xml" value="0.22" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/layout/fragment_home.xml" value="0.22" />
@@ -18,7 +21,9 @@
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/layout/fragment_search.xml" value="0.25" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/layout/fragment_setting_profile.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/layout/fragment_show_product.xml" value="0.25" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/layout/fragment_transaction.xml" value="0.22" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/layout/home_row.xml" value="0.19021739130434784" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/layout/lvcategory_row.xml" value="0.47176913425345046" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/layout/message_row.xml" value="0.22" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/ProjectKuliah/app/src/main/res/layout/search_row.xml" value="0.33" />
