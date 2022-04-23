@@ -10,6 +10,7 @@ IDE : Android Studio
 UI Lib : Material Design
 DB : Local SQLite
 Code : Kotlin
+Layout : ConstraintLayout Based
 
 # Features
 1. Register
@@ -17,5 +18,7 @@ Code : Kotlin
 3. Change Profile
 4. Change Photo Profile
 5. Maps
-6. Multimedia Fetching
-7. Passing Data
+6. Fragment
+7. Multimedia Fetching
+8. Passing Data
+9. List View
